@@ -35,4 +35,11 @@ export class ProductsService {
   deleteProduct(productId: number) {
     return this.http.delete(`https://dummyjson.com/auth/products/${productId}`);
   }
+
+  updateProduct(productId: number, product: any) {
+    return this.http.patch(
+      'https://dummyjson.com/auth/products/' + productId,
+      product
+    );
+  }
 }

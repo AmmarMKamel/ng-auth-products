@@ -10,6 +10,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { ProductEditComponent } from './components/product-edit/product-edit.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     SharedModule,
     CommonModule,
     MatPaginatorModule,
+    ReactiveFormsModule,
     StarRatingModule.forRoot(),
   ],
 })
