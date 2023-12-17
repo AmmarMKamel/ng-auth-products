@@ -3,30 +3,31 @@
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form-floating mb-3">
         <input
-          type="email"
+          type="text"
           class="form-control"
-          id="email"
-          formControlName="email"
-          placeholder="Email"
+          id="username"
+          formControlName="username"
+          placeholder="Username"
         />
-        <label for="email">Email</label>
+        <label for="username">Username</label>
         <div
           class="my-3"
           *ngIf="
-            loginForm.get('email')?.touched && loginForm.get('email')?.invalid
+            loginForm.get('username')?.touched &&
+            loginForm.get('username')?.invalid
           "
         >
           <span
-            *ngIf="loginForm.get('email')?.errors?.['required']"
+            *ngIf="loginForm.get('username')?.errors?.['required']"
             class="text-danger"
           >
-            Email is required!
+            Username is required!
           </span>
           <span
-            *ngIf="loginForm.get('email')?.errors?.['email']"
+            *ngIf="loginForm.get('username')?.errors?.['minlength']"
             class="text-danger"
           >
-            Please enter a valid email!
+            Please enter a valid username!
           </span>
         </div>
       </div>
@@ -54,7 +55,7 @@
             Password is required!
           </span>
           <span
-            *ngIf="loginForm.get('password')?.errors?.['minLength']"
+            *ngIf="loginForm.get('password')?.errors?.['minlength']"
             class="text-danger"
           >
             Please enter a valid password!
