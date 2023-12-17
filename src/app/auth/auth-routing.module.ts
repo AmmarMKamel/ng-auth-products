@@ -3,7 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './components/login/login.component';
 
-const routes: Routes = [{ path: '', component: LoginComponent }];
+import { LoginGuard } from './guards/login.guard';
+
+const routes: Routes = [
+  { path: '', component: LoginComponent, canActivate: [LoginGuard] },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

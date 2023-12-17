@@ -23,7 +23,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
     this.pageChangedSubscription = this.productsService.pageChanged.subscribe(
       (pageIndex: number) => {
-        console.log('Here!');
         this.skip = pageIndex * 10;
         this.getProducts(this.skip);
       }
@@ -37,7 +36,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
   getProducts(skip: number): void {
     this.productsService.getProducts(10, skip).subscribe({
       next: (responseData) => {
-        console.log(responseData);
         this.productsCount = responseData.total;
         this.products = responseData.products;
       },

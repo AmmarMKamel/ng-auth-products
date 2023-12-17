@@ -8,7 +8,9 @@ import { IUser } from '../models/iuser';
   providedIn: 'root',
 })
 export class AuthService {
-  isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    !!localStorage.getItem('token')
+  );
 
   constructor(private http: HttpClient) {}
 
