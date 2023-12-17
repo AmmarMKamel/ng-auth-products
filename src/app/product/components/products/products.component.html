@@ -1,13 +1,11 @@
 <div class="container">
   <div class="row py-5 row-cols-3">
-    <app-product-card></app-product-card>
-    <app-product-card></app-product-card>
-    <app-product-card></app-product-card>
-    <app-product-card></app-product-card>
-    <app-product-card></app-product-card>
-    <app-product-card></app-product-card>
+    <app-product-card
+      *ngFor="let product of products"
+      [product]="product"
+    ></app-product-card>
   </div>
   <div class="row py-2">
-    <app-paginator></app-paginator>
+    <app-paginator [length]="productsCount"></app-paginator>
   </div>
 </div>

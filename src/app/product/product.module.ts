@@ -8,9 +8,20 @@ import { ProductsComponent } from './components/products/products.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { ProductEditComponent } from './components/product-edit/product-edit.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-  declarations: [ProductsComponent, PaginatorComponent, ProductEditComponent, ProductDetailsComponent],
-  imports: [ProductRoutingModule, SharedModule, MatPaginatorModule],
+  declarations: [
+    ProductsComponent,
+    PaginatorComponent,
+    ProductEditComponent,
+    ProductDetailsComponent,
+  ],
+  imports: [
+    ProductRoutingModule,
+    SharedModule,
+    CommonModule,
+    MatPaginatorModule,
+  ],
 })
 export class ProductModule {}
