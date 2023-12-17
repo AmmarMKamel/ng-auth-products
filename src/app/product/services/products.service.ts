@@ -23,12 +23,12 @@ export class ProductsService {
       skip: number;
       total: number;
       products: IProduct[];
-    }>('https://dummyjson.com/products', {
+    }>('https://dummyjson.com/auth/products', {
       params: searchParams,
     });
   }
 
   deleteProduct(productId: number) {
-    return this.http.delete(`https://dummyjson.com/products/${productId}`);
+    return this.http.delete(`https://dummyjson.com/auth/products/${productId}`);
   }
 }

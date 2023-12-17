@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './components/home/home.component';
 
@@ -23,11 +23,14 @@ const routes: Routes = [
     path: 'products',
     loadChildren: () =>
       import('./product/product.module').then((module) => module.ProductModule),
+    canActivate: [HomeGuard],
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
