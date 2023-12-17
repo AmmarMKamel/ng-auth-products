@@ -24,4 +24,8 @@ export class ProductsService {
       params: searchParams,
     });
   }
+
+  deleteProduct(productId: number) {
+    return this.http.delete(`https://dummyjson.com/products/${productId}`);
+  }
 }
