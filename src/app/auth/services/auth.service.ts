@@ -12,6 +12,7 @@ export class AuthService {
   isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     !!localStorage.getItem('token')
   );
+  private tokenExpirationTimer: any;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -19,6 +20,7 @@ export class AuthService {
     return this.http.post<IUser>('https://dummyjson.com/auth/login', {
       username,
       password,
+      expiresInMins: 60,
     });
   }
 
@@ -26,5 +28,14 @@ export class AuthService {
     localStorage.removeItem('token');
     this.isLoggedIn.next(false);
     this.router.navigate(['/login']);
+    if (this.tokenExpirationTimer) {
+      clearTimeout(this.tokenExpirationTimer);
+    }
+  }
+
+  autoLogout() {
+    this.tokenExpirationTimer = setTimeout(() => {
+      this.logout();
+    }, 3600 * 1000);
   }
 }

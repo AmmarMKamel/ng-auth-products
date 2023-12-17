@@ -42,4 +42,8 @@ export class ProductsService {
       product
     );
   }
+
+  createProduct(product: any) {
+    return this.http.post('https://dummyjson.com/auth/products/add', product);
+  }
 }

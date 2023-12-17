@@ -11,6 +11,7 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
 import { ProductEditComponent } from './components/product-edit/product-edit.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProductAddComponent } from './components/product-add/product-add.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     PaginatorComponent,
     ProductEditComponent,
     ProductDetailsComponent,
+    ProductAddComponent,
   ],
   imports: [
     ProductRoutingModule,
