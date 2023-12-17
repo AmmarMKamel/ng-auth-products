@@ -1,4 +1,7 @@
 <div class="container">
+  <div class="text-center row py-5" *ngIf="isLoading">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
   <div class="row py-5 row-cols-3">
     <app-product-card
       *ngFor="let product of products"

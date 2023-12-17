@@ -1,1 +1,54 @@
-<p>product-details works!</p>
+<div class="container">
+  <div class="text-center row py-5" *ngIf="isLoading">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+
+  <div class="row py-5" *ngIf="!isLoading">
+    <div class="col-6">
+      <img
+        src="{{ product?.thumbnail }}"
+        alt=""
+        class="img-fluid rounded mb-3 w-100"
+        style="max-height: 500px"
+      />
+      <div class="row d-flex justify-content-between">
+        <img
+          src="{{ image }}"
+          alt="{{ product?.title }}"
+          class="img-fluid rounded mx-2 border"
+          style="width: 100px; height: 100px"
+          *ngFor="let image of product?.images"
+        />
+      </div>
+    </div>
+    <div class="col-6">
+      <h1
+        class="fs-1 d-flex align-items-center justify-content-between"
+        style="line-height: 1.1em"
+      >
+        {{ product?.title }} ({{ product?.rating }})
+        <span class="badge text-bg-primary">{{ product?.brand }}</span>
+      </h1>
+      <h2>{{ product?.description }}</h2>
+      <p>Available Stock: {{ product?.stock }}</p>
+      <p>
+        Price:
+        <span
+          class="me-2"
+          [ngStyle]="{
+            textDecoration:
+              product && product.discountPercentage > 0 ? 'line-through' : ''
+          }"
+          >${{ product?.price }}</span
+        >
+        <span *ngIf="product && product.discountPercentage > 0"
+          >${{
+            (product.price * (100 - product.discountPercentage)) / 100
+              | number : "1.0-2"
+          }}</span
+        >
+      </p>
+      <button class="btn btn-outline-success">Edit</button>
+    </div>
+  </div>
+</div>

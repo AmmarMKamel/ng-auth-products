@@ -15,10 +15,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
   productsCount: number = 0;
   skip: number = 0;
   pageChangedSubscription!: Subscription;
+  isLoading: boolean = false;
 
   constructor(private productsService: ProductsService) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.getProducts(0);
 
     this.pageChangedSubscription = this.productsService.pageChanged.subscribe(
@@ -38,6 +40,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       next: (responseData) => {
         this.productsCount = responseData.total;
         this.products = responseData.products;
+        this.isLoading = false;
       },
       error: (error) => console.log(error),
     });

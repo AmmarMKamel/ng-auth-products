@@ -10,12 +10,17 @@ import { IProduct } from '../../product/models/iproduct';
 })
 export class HomeComponent implements OnInit {
   products: IProduct[] = [];
+  isLoading: boolean = false;
 
   constructor(private productsService: ProductsService) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.productsService.getProducts(6, 0).subscribe({
-      next: (responseData) => (this.products = responseData.products),
+      next: (responseData) => {
+        this.products = responseData.products;
+        this.isLoading = false;
+      },
       error: (error) => console.log(error),
     });
   }

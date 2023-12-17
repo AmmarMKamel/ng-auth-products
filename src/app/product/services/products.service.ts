@@ -13,6 +13,10 @@ export class ProductsService {
 
   constructor(private http: HttpClient) {}
 
+  getProduct(id: number) {
+    return this.http.get<IProduct>('https://dummyjson.com/auth/products/' + id);
+  }
+
   getProducts(limit: number, skip: number) {
     let searchParams = new HttpParams();
     searchParams = searchParams.append('limit', limit);
