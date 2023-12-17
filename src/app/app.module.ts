@@ -8,10 +8,11 @@ import { AuthModule } from './auth/auth.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, HomeComponent],
-  imports: [BrowserModule, AppRoutingModule, SharedModule, AuthModule],
+  imports: [BrowserModule, AppRoutingModule, SharedModule, AuthModule, BrowserAnimationsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
