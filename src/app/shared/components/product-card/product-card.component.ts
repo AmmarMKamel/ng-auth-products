@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { IProduct } from '../../../product/models/iproduct';
@@ -12,6 +12,7 @@ import { ProductsService } from '../../../product/services/products.service';
 })
 export class ProductCardComponent {
   @Input() product?: IProduct;
+  @Output() deleteProduct: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(
     private router: Router,
@@ -24,7 +25,10 @@ export class ProductCardComponent {
 
   onDelete() {
     this.productsService.deleteProduct(this.product!.id).subscribe({
-      next: (responseData) => console.log(responseData),
+      next: (responseData: any) => {
+        console.log(responseData);
+        this.deleteProduct.emit(responseData.title);
+      },
       error: (error) => console.log(error),
     });
   }

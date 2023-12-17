@@ -16,6 +16,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   skip: number = 0;
   pageChangedSubscription!: Subscription;
   isLoading: boolean = false;
+  deletedProductTitle: string = '';
 
   constructor(private productsService: ProductsService) {}
 
@@ -44,5 +45,16 @@ export class ProductsComponent implements OnInit, OnDestroy {
       },
       error: (error) => console.log(error),
     });
+  }
+
+  onProductDeletion(event: any) {
+    this.deletedProductTitle = event;
+    setTimeout(() => {
+      this.deletedProductTitle = '';
+    }, 5000);
+  }
+
+  resetDeletedProductTitle() {
+    this.deletedProductTitle = '';
   }
 }
