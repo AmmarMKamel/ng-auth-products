@@ -13,17 +13,24 @@ export class HomeComponent implements OnInit {
   isLoading: boolean = false;
   deletedProductTitle: string = '';
   productDeletionTimer: any;
+  error: string = '';
 
   constructor(private productsService: ProductsService) {}
 
   ngOnInit(): void {
     this.isLoading = true;
+    this.error = '';
+
     this.productsService.getProducts(6, 0).subscribe({
       next: (responseData) => {
         this.products = responseData.products;
         this.isLoading = false;
+
+        if (this.products.length === 0) {
+          this.error = 'There was a problem getting products!';
+        }
       },
-      error: (error) => console.log(error),
+      error: (error) => (this.error = 'There was a problem getting products!'),
     });
   }
 
