@@ -17,6 +17,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   pageChangedSubscription!: Subscription;
   isLoading: boolean = false;
   deletedProductTitle: string = '';
+  error: string = '';
 
   constructor(private productsService: ProductsService) {}
 
@@ -37,13 +38,19 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   getProducts(skip: number): void {
+    this.error = '';
+
     this.productsService.getProducts(10, skip).subscribe({
       next: (responseData) => {
         this.productsCount = responseData.total;
         this.products = responseData.products;
         this.isLoading = false;
+
+        if (this.products.length === 0) {
+          this.error = 'There was a problem getting products!';
+        }
       },
-      error: (error) => console.log(error),
+      error: (error) => (this.error = 'There was a problem getting products!'),
     });
   }
 

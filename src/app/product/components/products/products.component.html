@@ -1,7 +1,23 @@
 <div class="container">
+  <div *ngIf="error">
+    <div
+      class="alert alert-danger alert-dismissible fade show fixed-bottom z-3 w-50 mx-auto"
+      role="alert"
+    >
+      <strong>Error!</strong> {{ error }}
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+  </div>
+
   <div class="text-center row py-5" *ngIf="isLoading">
     <app-loading-spinner></app-loading-spinner>
   </div>
+
   <div class="row pt-5" *ngIf="deletedProductTitle">
     <div
       class="alert alert-success alert-dismissible fade show fixed-bottom z-3"
@@ -25,7 +41,7 @@
       (deleteProduct)="onProductDeletion($event)"
     ></app-product-card>
   </div>
-  <div class="row py-2">
+  <div class="row py-2" *ngIf="!error">
     <app-paginator [length]="productsCount"></app-paginator>
   </div>
 </div>
