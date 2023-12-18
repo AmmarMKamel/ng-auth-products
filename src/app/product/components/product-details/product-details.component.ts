@@ -26,7 +26,8 @@ export class ProductDetailsComponent implements OnInit {
 
     this.route.params.subscribe((params: Params) => {
       this.productId = +params['id'];
-      if (this.productId) {
+
+      if (!isNaN(this.productId)) {
         this.productsService.getProduct(this.productId).subscribe({
           next: (responseData) => {
             this.product = responseData;
@@ -37,6 +38,9 @@ export class ProductDetailsComponent implements OnInit {
             this.isLoading = false;
           },
         });
+      } else {
+        this.error = 'There was a problem retrieving the product!';
+        this.isLoading = false;
       }
     });
   }

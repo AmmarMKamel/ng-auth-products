@@ -12,6 +12,7 @@ import { ProductEditComponent } from './components/product-edit/product-edit.com
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProductAddComponent } from './components/product-add/product-add.component';
+import { ProductFormComponent } from './components/product-form/product-form.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ProductAddComponent } from './components/product-add/product-add.compon
     ProductEditComponent,
     ProductDetailsComponent,
     ProductAddComponent,
+    ProductFormComponent,
   ],
   imports: [
     ProductRoutingModule,
