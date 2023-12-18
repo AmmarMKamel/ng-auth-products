@@ -3,7 +3,10 @@
     <app-loading-spinner></app-loading-spinner>
   </div>
   <div class="row pt-5" *ngIf="deletedProductTitle">
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <div
+      class="alert alert-success alert-dismissible fade show fixed-bottom z-3"
+      role="alert"
+    >
       <strong>Success!</strong> Product "{{ deletedProductTitle }}" has been
       deleted successfully!
       <button

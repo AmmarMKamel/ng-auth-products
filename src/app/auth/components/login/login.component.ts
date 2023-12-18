@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  error: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -28,7 +29,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.loginForm);
+    this.error = '';
+
     if (this.loginForm.invalid) {
       return;
     }
@@ -42,7 +44,7 @@ export class LoginComponent implements OnInit {
           this.authService.isLoggedIn.next(true);
           this.router.navigate(['/']);
         },
-        error: (error) => console.log(error),
+        error: (error) => (this.error = error.error.message),
       });
   }
 }

@@ -11,6 +11,8 @@ import { IProduct } from '../../product/models/iproduct';
 export class HomeComponent implements OnInit {
   products: IProduct[] = [];
   isLoading: boolean = false;
+  deletedProductTitle: string = '';
+  productDeletionTimer: any;
 
   constructor(private productsService: ProductsService) {}
 
@@ -23,5 +25,20 @@ export class HomeComponent implements OnInit {
       },
       error: (error) => console.log(error),
     });
+  }
+
+  onProductDeletion(event: any) {
+    this.deletedProductTitle = event;
+
+    if (this.productDeletionTimer) clearTimeout(this.productDeletionTimer);
+
+    this.productDeletionTimer = setTimeout(() => {
+      this.deletedProductTitle = '';
+    }, 5000);
+  }
+
+  resetDeletedProductTitle() {
+    this.deletedProductTitle = '';
+    if (this.productDeletionTimer) clearTimeout(this.productDeletionTimer);
   }
 }

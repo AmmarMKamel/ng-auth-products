@@ -15,8 +15,11 @@ export class ProductAddComponent implements OnInit {
     title: new FormControl(null, Validators.required),
     description: new FormControl(null, Validators.required),
     price: new FormControl(null, [Validators.required, Validators.min(0.01)]),
-    discountPercentage: new FormControl(null, Validators.min(0.01)),
-    stock: new FormControl(null, [Validators.required, Validators.min(0.0)]),
+    discountPercentage: new FormControl(null, [
+      Validators.min(0.01),
+      Validators.max(100),
+    ]),
+    stock: new FormControl(null, [Validators.required, Validators.min(0)]),
     brand: new FormControl(null, Validators.required),
     category: new FormControl(null, Validators.required),
     thumbnail: new FormControl(null, Validators.required),
@@ -36,6 +39,10 @@ export class ProductAddComponent implements OnInit {
   }
 
   onSubmit() {
+    // if (this.productForm.invalid) {
+    //   return;
+    // }
+    console.log(this.productForm);
     this.productsService.createProduct(this.productForm.value).subscribe({
       next: (responseData) => console.log(responseData),
       error: (error) => console.log(error),

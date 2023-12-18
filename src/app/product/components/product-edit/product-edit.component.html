@@ -13,6 +13,15 @@
           placeholder="Title"
         />
         <label for="title">Title</label>
+        <div
+          class="my-3"
+          *ngIf="
+            productForm.get('description')?.touched &&
+            productForm.get('description')?.invalid
+          "
+        >
+          <span class="text-danger"> Description is required! </span>
+        </div>
       </div>
 
       <div class="form-floating mb-3">
@@ -35,6 +44,26 @@
           placeholder="Price"
         />
         <label for="price">Price</label>
+        <div
+          class="my-3"
+          *ngIf="
+            productForm.get('price')?.touched &&
+            productForm.get('price')?.invalid
+          "
+        >
+          <span
+            class="text-danger"
+            *ngIf="productForm.get('price')?.errors?.['required']"
+          >
+            Price is required!
+          </span>
+          <span
+            class="text-danger"
+            *ngIf="productForm.get('price')?.errors?.['min']"
+          >
+            Please enter a valid price!
+          </span>
+        </div>
       </div>
 
       <div class="form-floating mb-3">
@@ -46,6 +75,17 @@
           placeholder="Discount Percentage"
         />
         <label for="discountPercentage">Discount Percentage (%)</label>
+        <div
+          class="my-3"
+          *ngIf="
+            productForm.get('discountPercentage')?.touched &&
+            productForm.get('discountPercentage')?.invalid
+          "
+        >
+          <span class="text-danger">
+            Please enter a valid discount percentage!
+          </span>
+        </div>
       </div>
 
       <div class="form-floating mb-3">
@@ -57,6 +97,26 @@
           placeholder="Stock"
         />
         <label for="stock">Stock</label>
+        <div
+          class="my-3"
+          *ngIf="
+            productForm.get('stock')?.touched &&
+            productForm.get('stock')?.invalid
+          "
+        >
+          <span
+            class="text-danger"
+            *ngIf="productForm.get('stock')?.errors?.['required']"
+          >
+            Stock is required!
+          </span>
+          <span
+            class="text-danger"
+            *ngIf="productForm.get('stock')?.errors?.['min']"
+          >
+            Please enter a valid stock!
+          </span>
+        </div>
       </div>
 
       <div class="form-floating mb-3">
@@ -68,6 +128,15 @@
           placeholder="Brand"
         />
         <label for="brand">Brand</label>
+        <div
+          class="my-3"
+          *ngIf="
+            productForm.get('brand')?.touched &&
+            productForm.get('brand')?.invalid
+          "
+        >
+          <span class="text-danger"> Brand name is required! </span>
+        </div>
       </div>
 
       <div class="form-floating mb-3">
@@ -79,6 +148,15 @@
           placeholder="Category"
         />
         <label for="category">Category</label>
+        <div
+          class="my-3"
+          *ngIf="
+            productForm.get('category')?.touched &&
+            productForm.get('category')?.invalid
+          "
+        >
+          <span class="text-danger"> Category is required! </span>
+        </div>
       </div>
 
       <div class="d-flex">
@@ -91,6 +169,15 @@
             placeholder="Thumbnail"
           />
           <label for="thumbnail">Thumbnail</label>
+          <div
+            class="my-3"
+            *ngIf="
+              productForm.get('thumbnail')?.touched &&
+              productForm.get('thumbnail')?.invalid
+            "
+          >
+            <span class="text-danger"> Category is required! </span>
+          </div>
         </div>
         <img
           src="{{ productForm.get('thumbnail')?.value }}"
