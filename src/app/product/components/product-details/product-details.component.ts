@@ -12,6 +12,7 @@ export class ProductDetailsComponent implements OnInit {
   productId?: number;
   product?: IProduct;
   isLoading: boolean = false;
+  error: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -20,17 +21,21 @@ export class ProductDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.error = '';
     this.isLoading = true;
+
     this.route.params.subscribe((params: Params) => {
       this.productId = +params['id'];
       if (this.productId) {
         this.productsService.getProduct(this.productId).subscribe({
           next: (responseData) => {
-            console.log(responseData);
             this.product = responseData;
             this.isLoading = false;
           },
-          error: (error) => console.log(error),
+          error: (error) => {
+            this.error = 'There was a problem retrieving the product!';
+            this.isLoading = false;
+          },
         });
       }
     });

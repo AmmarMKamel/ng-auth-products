@@ -1,9 +1,24 @@
 <div class="container">
-  <div class="text-center row py-5" *ngIf="isLoading">
+  <div *ngIf="error">
+    <div
+      class="alert alert-danger alert-dismissible fade show fixed-bottom z-3 w-50 mx-auto"
+      role="alert"
+    >
+      <strong>Error!</strong> {{ error }}
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+  </div>
+
+  <div class="text-center row py-5" *ngIf="isLoading && !error">
     <app-loading-spinner></app-loading-spinner>
   </div>
 
-  <div class="row py-5" *ngIf="!isLoading">
+  <div class="row py-5" *ngIf="!isLoading && !error">
     <div class="col-6">
       <img
         src="{{ product?.thumbnail }}"
